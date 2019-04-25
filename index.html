@@ -87,9 +87,9 @@
     <!--add bgcolor<input type="checkbox" value = "true"><br>-->
   <span class = "exportsettings">
     PNG/SVG Export BG Color<input type="color" value="#ffffff" id="bgColor"><br><br>
-  <button id = "updateProps">Update Properties</button>
-  <button id="downloadToSVG">Save as SVG</button>
-  <button id="downloadToPNG">Save as PNG</button>
+  <button type="button" id = "updateProps">Update Properties</button>
+  <button type="button" id="downloadToSVG">Save as SVG</button>
+  <button type="button" id="downloadToPNG">Save as PNG</button>
   </span>
   </form>
 </div>
@@ -126,7 +126,7 @@ initDrawer('drawArea',
   '#000000', '#00f000', 100,
   false, 0.25, "rainbow", 
   true, false, "normal", 
-  false, false, "normal", false, false, "transparent", "console", "properties"); 
+  false, false, "normal", false, false, "transparent", "console", "updateProps"); 
 
 
 

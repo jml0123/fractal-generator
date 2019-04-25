@@ -9,7 +9,7 @@ function initCanvas(canvasName) {
 
 function initDrawer(canvasName, strokeColor, strokeWidth, boldStrokeColor, fillColor, 
   numClones, visiblePath, scaleFactor, style, golden, isFractal, blend, 
-  offset, fadeType, outline, dashed, filled, bgColor, UITag, UISupport) {
+  offset, fadeType, outline, dashed, filled, bgColor, UISupport, UITag) {
     
     function removePath(){
       console.log("called")
@@ -52,9 +52,9 @@ function initDrawer(canvasName, strokeColor, strokeWidth, boldStrokeColor, fillC
     console.log(initStyles);
 
     if (UISupport) {// Submit button for now... later make dynamic
-        var ui = document.getElementById(UITag);
+        var uiButton = document.getElementById(UITag);
         console.log("Added UI!")
-        ui.addEventListener('click', function(){
+        uiButton.addEventListener('click', function(){
         console.log("Updated Properties!")
         project.clear();
         group = new paper.Group();
@@ -82,7 +82,7 @@ function initDrawer(canvasName, strokeColor, strokeWidth, boldStrokeColor, fillC
           "exportBgColor" : getValues('bgColor')
         };
 
-      UIFrame = document.getElementById(UITag);
+      UIFrame = document.getElementById(UISupport);
       UIFrame.addEventListener("keypress", hideUI);
       var uiHidden = false;
       function hideUI(event){
