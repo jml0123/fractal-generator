@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/shapes.css">
+<meta name="viewport" content="width=device-width">
+<title>OrganicMaterial.io</title>
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:200,400" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400" rel="stylesheet">
+</head>
+
+<body>
+<div id="splash">
+<h1 class = "introLetters">
+  <span class="letter">S</span>
+  <span class="letter">A</span>
+  <span class="letter">C</span>
+  <span class="letter">R</span>
+  <span class="letter">E</span>
+  <span class="letter">D</span>
+  <span class="letter">&nbsp</span>
+  <span class="letter">S</span>
+  <span class="letter">H</span>
+  <span class="letter">A</span>
+  <span class="letter">P</span>
+  <span class="letter">E</span>
+  <span class="letter">S</span>
+
+</h1>
+  <img class = "introimg" src="assets/svg/shape_3.svg">
+</div>
+
+<div id="main-container">
+
+<div id="infosection" ><img src="assets/infoIcon.png" height=25px width=25px></div> 
+<!-- add tooltip and show directions on click -->
+
+<div id="helper">Helper goes here... <br>Update everytime <br>params are changed</div> 
+
+<canvas id="drawArea"></canvas>
+<div id = "console">
+  <div id="title"><h1></h1></div>
+  <form id = "params">
+  <legend class="paramsName">Initial Shape</legend><br>
+  <span class="properties">
+  Stroke Width<br><input type="number" min="0.01" max="10" value="2" step="0.001" id="strokeWidth"><br>
+  Stroke Color<br><input type="color" value="#01217B" id="strokeColor"><br>
+  Color 2 (optional)<br><input type="color" value="#293882" id="boldStrokeColor"><br>
+  Fill Color<br><input type="color" value="#F0EAF4" id="fillColor"><br>
+  </span>
+
+  <br>
+  <legend class="paramsName">Material</legend><br>
+  <span class="properties">
+  Scale Factor<br><input type="number" min="0" max="1" value= "0.33"  step="0.001" id="sfactor"><br>
+  Iterations<br><input type="number" min="1" max="3000" value="100" id="loops"><br>
+  Material Properties<br><select id="loopMode">
+    <option value = "consistent">consistent</option>
+    <option value = "rainbow">spectrum</option>
+    <!-- there are more -->
+
+
+  </select><br>
+  Material Shape<select id="loopMaterialShape">
+    <option value=false>Default</option>
+    <option value="dashed">Dashed</option>
+    <option value="dotted">Dotted</option>
+     <option value="dashed-fade">Dashed (Dispersed)</option>
+    <option value="dotted-fade">Dotted (Dispersed)</option>
+  </select><br>
+  Blend Style<br><select id="blendStyle"> <!-- Add an alert if user checks this and change the maximum iterations to 1000-->
+      <option value = "normal">default</option>
+      <option value = "exclusion">exclusion</option>
+      <option value = "xor">xor</option>
+      <option value = "negation">negation</option>
+  </select><br>
+    Golden Ratio<input type="checkbox"  id="golden"><br>
+    Visible Path<input type="checkbox"  id="visiblePath"><br>
+    Disperses<input type="checkbox"  id="fade"><br>
+    is Fractal <input type="checkbox" id="fractalBool"><br> <!-- Add an alert if user checks this and change the maximum iterations to 55-->
+    Offset<br><select id="offset">
+      <option value = >None</option>
+      <option value = "slight">subtle</option>
+      <option value = "pi">position * pi</option>
+      <option value = "fib">fibonacci</option>
+    </select><br><br>
+  </span>
+    <!--add bgcolor<input type="checkbox" value = "true"><br>-->
+  <span class = "exportsettings">
+    PNG/SVG Export BG Color<input type="color" value="#ffffff" id="bgColor"><br><br>
+  <button id = "updateProps">Update Properties</button>
+  <button id="downloadToSVG">Save as SVG</button>
+  <button id="downloadToPNG">Save as PNG</button>
+  </span>
+  </form>
+</div>
+</div>
+
+</body>
+
+<script src="js/anime.js"></script>
+<script src="js/Blob.js"></script>
+<script src="js/canvas-toBlob.js"></script>
+<script src="js/FileSaver.js"></script>
+<script src="js/paper-full.js"></script>
+<script src="js/draw.js"></script>
+<script src="js/page.js"></script>
+<script type="text/javascript">
+const splash = document.getElementById('splash');
+//const canvas = document.getElementById('drawArea');
+const UI = document.getElementById('console');
+const params = document.getElementById('params');
+textcolorrandomizer("id", "splash");
+
+
+setTimeout(function(){
+  fade(splash, 10);
+  unfade(drawArea, 10);
+  unfade(UI, 8);
+
+}, 2800)
+
+initCanvas('drawArea');
+
+initDrawer('drawArea', 
+  "#00f000", 1.33, 
+  '#000000', '#00f000', 100,
+  false, 0.25, "rainbow", 
+  true, false, "normal", 
+  false, false, "normal", false, false, "transparent", "console", "properties"); 
+
+
+
+
+/*
+canvas: 'drawArea', 
+scolor: "#00f000",
+swidth: 1, 
+fill: '#000000', 
+secondary color: '#00f000', 
+iterations; 100,
+path: false, 
+scale factor: 0.25, 
+type: "rainbow", 
+golden: true, 
+fractal: false, 
+blend: "normal", 
+offset: false, 
+fade: false, 
+outline: "light", 
+dashed: false, 
+bgColor, "#fcfcfc"
+*/
+
+/* Update everytime form is updated */
+
+
+/*
+
+function UpdateProperties() {
+  initDrawer('drawArea', 
+    getValues('strokeColor'),
+    getValues('strokeWidth'),
+    getValues('boldStrokeColor'),
+    getValues('fillColor'),
+    getValues('loops'),
+    getValues('visiblePath'),
+    getValues('sfactor'),
+    getValues('loopMode'),
+    getValues('golden'),
+    getValues('fractal'),
+    getValues('blendStyle'),
+    getValues('offset'),
+    getValues('fade'),
+    "light",
+    getValues('loopMaterialShape'),
+    false,
+    getValues('bgColor'));
+
+    console.log('Updated! ' + event.target.id);
+    console.log(currentProperties());
+};*/
+
+/* Update Values */
+/* params.addEventListener("change", UpdateProperties); */
+
+  //exclusion
+  //xor
+  //negation
+  //normal
+  //luminosity
+  //50 is overclock for fractal
+  //500 is overclock for non fractal, no color blend
+  //Negation / xor takes a while... put a warning
+
+
+
+</script>
+</html>
