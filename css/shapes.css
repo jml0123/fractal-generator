@@ -55,7 +55,7 @@ canvas {
 	position: absolute;
 	font-size: 3.213vw;
 	font-family: "Source Code Pro", monospace;
-	text-shadow: 2px 1px 5px black;
+	text-shadow: 2px 1px 5px #d6d6d6;
 	font-weight: 400;
 	padding-left: 20px;
 	padding-right: 20px;
@@ -70,7 +70,7 @@ canvas {
 
 #splash h1 {
 	text-align: center;
-	top: 42.4%;
+	top: 42%;
 	left: 24%;
 }
 
