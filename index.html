@@ -32,10 +32,10 @@
 
 <div id="main-container">
 
-<div id="infosection" ><img src="assets/infoIcon.png" height=25px width=25px></div> 
+<div id="infosection"  ><img src="assets/infoIcon.png" height=25px width=25px"></div> 
 <!-- add tooltip and show directions on click -->
 
-<div id="helper">Press "o" to generate shape <br>Press "f" to fill shape <br>Click "Update Properties" everytime options are changed.</div> 
+<div id="helper"><h1>Organic Shapes Dev Build</h1>Press "o" to generate shape <br>Press "f" to fill shape <br>Click "Update Properties" everytime options are changed.<br>*NOT MOBILE FRIENDLY YET*</div> 
 
 <canvas id="drawArea"></canvas>
 <div id = "console">
@@ -110,6 +110,7 @@ const splash = document.getElementById('splash');
 //const canvas = document.getElementById('drawArea');
 const UI = document.getElementById('console');
 const params = document.getElementById('params');
+const helper = document.getElementById('helper');
 textcolorrandomizer("id", "splash");
 
 
@@ -120,6 +121,7 @@ setTimeout(function(){
 
 }, 2800)
 
+
 initCanvas('drawArea');
 
 initDrawer('drawArea', 
@@ -129,6 +131,9 @@ initDrawer('drawArea',
   true, false, "normal", 
   false, false, "normal", false, false, "transparent", "console", "updateProps"); 
 
+
+/* Fade helper, show it on hover over info button" */
+/* Update helper with params, then switch to default */
 
 
 

@@ -101,8 +101,12 @@ canvas {
 	left: 12.33%;
 	margin: 0 auto;
 	padding: 0;
-	height: 1020px;
-	width: 1020px;
+	max-height: 1020px;
+	max-width: 1020px;
+	min-height: 300px;
+	min-width: 300px;
+	width: 70%;
+	height: 70%;
 	/* border: grey 4.33px double; */
 	border: 1px #efefef solid;
 	z-index: 100;
@@ -193,7 +197,8 @@ form {
 	background: black;
 	font-family: 'Source Code Pro', monospace;
 	font-weight: 400;
-	font-size: 12px;
+	font-size: 11px;
+	z-index: 1000px;
 }
 
 #infosection img {
@@ -232,4 +237,54 @@ form {
 	background: transparent;
 	color: white;
 	background-size: contain;
+}
+
+@media only screen and (max-height: 950px) {
+#console {
+	top: 3.4%;
+
+}
+
+#params legend {
+	text-align: center;
+	padding-top: 5px;
+}
+
+
+@media only screen and (max-height: 800px) {
+#console {
+	top: 1%;
+
+}
+#params {
+	font-size: 8px;
+}
+
+#params input, select {
+	padding: 0px;
+	margin:  3px;
+	padding: 0.5px;
+	padding-bottom: 0px;
+	background: white;
+	border-radius: 3px;
+}
+
+}
+
+@media only screen and (max-height: 600px) {
+#console {
+	top: 0.3%;
+
+}
+#params {
+	font-size: 8px;
+}
+
+#params input, select {
+	padding: 0px;
+	margin:  1px;
+	padding: 0.2px;
+	padding-bottom: 0px;
+	background: white;
+	border-radius: 3px;
 }
