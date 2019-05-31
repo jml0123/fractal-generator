@@ -1131,29 +1131,30 @@ function initDrawer(canvasName, strokeColor, strokeWidth, boldStrokeColor, fillC
       PNGbutton.onclick = function(){
       canvas.style.backgroundColor = "transparent";
 
-      if (bgColor || bgColor != 'transparent') {
-       var bgExport = new Path.Rectangle({
+      if (initStyles.exportBgColor != 'transparent') {
+        var bgExport = new Path.Rectangle({
          point: [0, 0],
-         size: [canvas.width / 2, canvas.height / 2],
+         size: [canvas.width/2, canvas.height/2],
          selected: false,
-         fillColor: bgColor
+         fillColor: (initStyles.exportBgColor)
        });
-       bgExport.sendToBack();
+        bgExport.sendToBack();
      }
 
      paper.view.draw();
+
      var filename = "Shape.png"
      var exportImg = new Image();
      exportImg.src ='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
-
      context.drawImage(exportImg, 0,0);
 
      canvas.toBlob(function(blob) {
      saveAs(blob, filename);
      }, "image/png");
-     canvas.style.backgroundColor = "white";
 
-    if (bgColor || bgColor != 'transparent') {
+
+    canvas.style.backgroundColor = "white";
+    if (initStyles.exportBgColor != 'transparent') {
      bgExport.remove();
     }}
 
